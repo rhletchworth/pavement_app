@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'user/index'
+
   resources :venues
   resources :artists
   resources :events

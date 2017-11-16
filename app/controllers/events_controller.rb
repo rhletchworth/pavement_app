@@ -4,7 +4,14 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    response = HTTParty.get("http://api.songkick.com/api/3.0/metro_areas/17913-us-raleigh/calendar.json?apikey=#{Figaro.env.songkick_api_key}")
+
+    @events = response['resultsPage']['results']['event']
+    
+      #@venue_id = event[index]['venue']['id']
+      #@artist_id = @event[index]['performance'][index]['artist']['id']
+      #@date = event[index]['start']['date']
+      #@time = event[index]['start']['time']
   end
 
   # GET /events/1

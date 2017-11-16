@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Venue</th>
-      <th>Artist</th>
+      <th>Artist(s)</th>
       <th>Date</th>
       <th>Time</th>
       <th colspan="3"></th>
@@ -16,13 +16,16 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.venue_id %></td>
-        <td><%= event.artist_id %></td>
-        <td><%= event.date %></td>
-        <td><%= event.time %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= event['venue']['id'] %></td>
+        <td><% event['performance'].each do |artist| %>
+               <%= artist['artist']['displayName'] %>
+               <br />
+            <% end %></td>
+        <td><%= event['start']['date'] %></td>
+        <td><%= event['start']['time'] %></td>
+        <!-- <td><%#= link_to 'Show', event %></td>
+        <td><%#= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>
