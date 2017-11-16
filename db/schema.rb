@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20171115063147) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "venue_id"
-    t.string "artist_id"
+    t.string "venue_name"
+    t.string "artist_name"
     t.date "date"
     t.time "time"
     t.datetime "created_at", null: false

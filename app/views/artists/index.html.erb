@@ -9,17 +9,22 @@
   </thead>
 
   <tbody>
-    <% @artists.each do |artist| %>
+    <% @events.each do |artist| %>
       <tr>
-        <td><%= artist.name %></td>
-        <td><%= link_to 'Show', artist %></td>
-        <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
-        <td><%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% artist['performance'].each do |artist| %>
+            <%= artist['artist']['displayName'] %>
+            <br />
+          <% end %>
+        </td>
+        <td><%#= link_to 'Show', artist %></td>
+        <td><%#= link_to 'Edit', edit_artist_path(artist) %></td>
+        <td><%#= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<br />
 
 <%= link_to 'New Artist', new_artist_path %>

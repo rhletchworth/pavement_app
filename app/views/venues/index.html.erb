@@ -10,18 +10,18 @@
   </thead>
 
   <tbody>
-    <% @venues.each do |venue| %>
+    <% @events.each do |venue| %>
       <tr>
-        <td><%= venue.name %></td>
-        <td><%= venue.location %></td>
-        <td><%= link_to 'Show', venue %></td>
-        <td><%= link_to 'Edit', edit_venue_path(venue) %></td>
-        <td><%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= venue['venue']['displayName'] %></td>
+        <td><%= venue['location']['city'] %></td>
+        <td><%#= link_to 'Show', venue %></td>
+        <td><%#= link_to 'Edit', edit_venue_path(venue) %></td>
+        <td><%#= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<br />
 
 <%= link_to 'New Venue', new_venue_path %>

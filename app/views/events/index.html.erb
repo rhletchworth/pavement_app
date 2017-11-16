@@ -1,3 +1,72 @@
+<%# @events.each_with_index do |event, index| %> 
+
+<script> 
+
+  $(document).ready(function (){
+    function initialize(){
+
+      var userCoords = new google.maps.LatLng(35.77657,-78.64543);
+
+      //var venueCoords = new google.maps.LatLng(<%#= event['venue']['lat'] %>, <%#= event['venue']['lng'] %>);
+
+      var mapOptions = {
+        center: { lat: 35.7855, lng: -78.64543 },
+        zoom: 10,
+        scrollwheel: false
+      };
+
+      var map = new google.maps.Map(document.getElementById('map-canvas<%#= index %>'), mapOptions);
+
+      var userMarker = new google.maps.Marker({
+        position: userCoords,
+        map: map,
+        animation: google.maps.Animation.DROP
+    });
+
+      //var image = { url: "http://www.iconsplace.com/icons/preview/blue/ticket-256.png", scaledSize: new google.maps.Size(25, 25)
+    //}
+
+      //var venueMarker = new google.maps.Marker({
+        //position: venueCoords,
+        //map: map,
+        //icon: image,
+        //animation: google.maps.Animation.DROP
+    //});
+
+    marker.setMap(map);            
+  };
+
+      //var contentStringUser = "This is you!";
+
+      //var contentStringEvent = "<%#= event['venue']['displayName'] %> | <%#= event['start']['date'] %> | <%#= event['start']['time'] %>";
+
+      
+
+  //var infoWindowEvent = new google.maps.InfoWindow({
+    //content: contentStringEvent
+  //});
+
+  //google.maps.event.addListener(venueMarker, 'click', function() {
+    //infoWindowEvent.open(map, venueMarker);
+  //});
+
+  //var infoWindowUser = new google.maps.InfoWindow({
+    //content: contentStringUser
+  //});
+
+  //google.maps.event.addListener(userMarker, 'click', function() {
+    //infoWindowUser.open(map, userMarker);
+  //});
+
+//}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+});
+
+</script>
+
+<%# end %>
+
 <div id="map-canvas"></div>
 
 <h1>Events</h1>
@@ -16,11 +85,13 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event['venue']['id'] %></td>
-        <td><% event['performance'].each do |artist| %>
+        <td><%= event['venue']['displayName'] %></td>
+        <td>
+          <% event['performance'].each do |artist| %>
                <%= artist['artist']['displayName'] %>
                <br />
-            <% end %></td>
+            <% end %>
+        </td>
         <td><%= event['start']['date'] %></td>
         <td><%= event['start']['time'] %></td>
         <!-- <td><%#= link_to 'Show', event %></td>
@@ -31,58 +102,6 @@
   </tbody>
 </table>
 
-<!-- <script>
-
-$(document).ready(function (){
-    function initialize(){
-   
-      var venueCoords = new google.maps.LatLng(<%#= event["lat"] %>, <%#= event["lng"] %>);
-
-      var userCoords = new google.maps.LatLng(35.77657, -78.64543)
-
-      var contentStringEvent = "<%#= event["venue"] %> | <%#= event["date"] %> | <%#= event["time"] %>";
-
-      var contentStringUser = "This is you!";
-
-      var image = { url: "http://www.iconsplace.com/icons/preview/blue/ticket-256.png", scaledSize: new google.maps.Size(25, 25)
-    }
-
-      var eventMarker = new google.maps.Marker({
-        position: venueCoords,
-        map: map,
-        icon: image,
-        animation: google.maps.Animation.DROP
-      });
-
-      var userMarker = new google.maps.Marker({
-        position: userCoords,
-        map: map,
-        animation: google.maps.Animation.DROP
-      });
-
-      var infoWindowEvent = new google.maps.InfoWindow({
-        content: contentStringEvent
-      });
-
-      google.maps.event.addListener(eventMarker, 'click', function() {
-        infoWindowEvent.open(map, eventMarker);
-      });
-
-      var infoWindowUser = new google.maps.InfoWindow({
-        content: contentStringUser
-      });
-
-      google.maps.event.addListener(userMarker, 'click', function() {
-        infoWindowUser.open(map, userMarker);
-      });
-
-    }
-  
-  google.maps.event.addDomListener(window, 'load', initialize);
-  });
-    
-</script> -->
-
-<br>
+<br />
 
 <%= link_to 'New Event', new_event_path %>

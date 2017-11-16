@@ -1,8 +1,8 @@
 class CreateEvents < ActiveRecord::Migration[5.1]
   def change
     create_table :events do |t|
-      t.integer :venue_id
-      t.integer :artist_id
+      t.string :venue_name
+      t.string :artist_name
       t.date :date
       t.time :time
 

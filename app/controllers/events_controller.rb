@@ -1,17 +1,10 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-  # GET /events
-  # GET /events.json
   def index
     response = HTTParty.get("http://api.songkick.com/api/3.0/metro_areas/17913-us-raleigh/calendar.json?apikey=#{Figaro.env.songkick_api_key}")
 
     @events = response['resultsPage']['results']['event']
-    
-      #@venue_id = event[index]['venue']['id']
-      #@artist_id = @event[index]['performance'][index]['artist']['id']
-      #@date = event[index]['start']['date']
-      #@time = event[index]['start']['time']
   end
 
   # GET /events/1
@@ -76,6 +69,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:venue_id, :artist_id, :date, :time)
+      params.require(:event).permit(:venue_name, :artist_name, :date, :time)
     end
 end
