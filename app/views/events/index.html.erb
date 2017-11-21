@@ -7,28 +7,22 @@
 
       var venueCoords = new google.maps.LatLng(<%= event['venue']['lat'] %>, <%= event['venue']['lng'] %>);
 
-      var userMarker = new google.maps.Marker({
-        position: userCoords,
-        map: map,
-        animation: google.maps.Animation.DROP
-    });
-
-      var image = { url: "#", scaledSize: new google.maps.Size(25, 25)
+      var image = { url: "https://www.northcountrypublicradio.org/support/images/icon-ticket.png", scaledSize: new google.maps.Size(25, 25)
     }
 
       var venueMarker = new google.maps.Marker({
         position: venueCoords,
         map: map,
-        //icon: image,
+        icon: image,
         animation: google.maps.Animation.DROP
     });
 
     marker.setMap(map);            
   };
 
-      //var contentStringUser = "This is you!";
+      var contentStringUser = "This is you!";
 
-      //var contentStringEvent = "<%#= event['venue']['displayName'] %> | <%#= event['start']['date'] %> | <%#= event['start']['time'] %>";
+      var contentStringEvent = "<%= event['venue']['displayName'] %> | <%= event['start']['date'] %> | <%= event['start']['time'] %>";
 
       
 
@@ -65,7 +59,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
   var mapOptions = {
     center: { lat: 35.7855, lng: -78.64543 },
-    zoom: 10,
+    zoom: 14,
     scrollwheel: false
   };
 
