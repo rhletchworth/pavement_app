@@ -1,12 +1,6 @@
 class VenuesController < ApplicationController
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
 
-  def index
-    response = HTTParty.get("http://api.songkick.com/api/3.0/metro_areas/17913-us-raleigh/calendar.json?apikey=#{Figaro.env.songkick_api_key}")
-
-    @events = response['resultsPage']['results']['event']
-  end
-
   # GET /venues/1
   # GET /venues/1.json
   def show

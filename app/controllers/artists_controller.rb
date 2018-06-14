@@ -1,12 +1,6 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :edit, :update, :destroy]
 
-  def index
-    response = HTTParty.get("http://api.songkick.com/api/3.0/metro_areas/17913-us-raleigh/calendar.json?apikey=#{Figaro.env.songkick_api_key}")
-
-    @events = response['resultsPage']['results']['event']
-  end
-  
   # GET /artists/1
   # GET /artists/1.json
   def show
