@@ -20,10 +20,6 @@ gem 'bootstrap-sass'
 gem 'figaro'
 # jQuery
 gem 'jquery-rails'
-# Geocoder
-gem 'geocoder'
-# GeoKit
-gem 'geokit-rails'
 # Devise
 gem 'devise'
 # CarrierWave
